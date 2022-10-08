@@ -7,23 +7,27 @@ import java.time.LocalDateTime;
 @Table(name = "services")
 public class Service {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime date;
+    private String uid;
+    private LocalDateTime date = LocalDateTime.now();;
     private String name, url, login, password;
 
-    public Service() { }
+    public Service () { }
 
-    public Service(String name, String url, String login, String password) {
-        this.date = LocalDateTime.now();
+    public Service (String name, String url, String login, String password) {
         this.name = name;
         this.url = url;
         this.login = login;
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public LocalDateTime getDate() {
@@ -44,25 +48,5 @@ public class Service {
 
     public String getPassword() {
         return password;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
