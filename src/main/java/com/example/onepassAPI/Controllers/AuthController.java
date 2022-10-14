@@ -53,7 +53,7 @@ public class AuthController {
                     tokenRepository.delete(tokenRepository.findByUid(auth.getUid()));
                     Token token = new Token(auth.getUid());
                     tokenRepository.save(token);
-                    return new MessageResponse("ok", 400, token);
+                    return new MessageResponse("ok", 200, token);
                 } else { return new MessageResponse("password is not correct", 400); }
             } else { return new MessageResponse("user not found", 404); }
         } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
