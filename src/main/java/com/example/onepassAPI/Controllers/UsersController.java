@@ -19,7 +19,7 @@ public class UsersController {
     private TokenRepository tokenRepository;
 
     @GetMapping
-    private MessageResponse getUser(@RequestBody String token) {
+    private MessageResponse getUser(@RequestParam (value = "token") String token) {
         try {
             if (tokenRepository.findByToken(token) != null) {
                 User user = usersRepository.findByUid(tokenRepository.findByToken(token).getUid());
