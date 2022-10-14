@@ -26,7 +26,7 @@ public class AuthController {
     @Autowired(required = false)
     private AuthRepository authRepository;
 
-    @PostMapping
+    @PostMapping("/registration")
     private MessageResponse registration(@RequestBody AuthRegistrationRequest authRegistrationRequest) {
         try {
             if (usersRepository.findByLogin(authRegistrationRequest.getLogin()) == null) {
@@ -40,11 +40,11 @@ public class AuthController {
                 tokenRepository.save(token);
                 return new MessageResponse("User registered", 200, token);
             }
-            else { return new MessageResponse("Login already exist", 200);  }
+            else { return new MessageResponse("Login already exist", 400);  }
         } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
     }
 
-    @GetMapping
+    @GetMapping("/login")
     private MessageResponse login(@RequestBody AuthLoginRequest authLoginRequest) {
         try {
             if (authRepository.findByLogin(authLoginRequest.getLogin()) != null) {
