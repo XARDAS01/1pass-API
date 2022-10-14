@@ -44,7 +44,7 @@ public class AuthController {
         } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     private MessageResponse login(@RequestBody AuthLoginRequest authLoginRequest) {
         try {
             if (authRepository.findByLogin(authLoginRequest.getLogin()) != null) {
