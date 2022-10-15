@@ -62,7 +62,7 @@ public class ServicesController {
 
     @DeleteMapping("/{name}")
     private MessageResponse deleteByName(
-            @RequestBody String token,
+            @RequestParam String token,
             @PathVariable("name") String name
     ) {
         try {

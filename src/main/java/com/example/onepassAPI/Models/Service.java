@@ -26,6 +26,10 @@ public class Service {
         return uid;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setUid(String uid) {
         this.uid = uid;
     }
