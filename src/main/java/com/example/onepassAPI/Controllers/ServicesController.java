@@ -36,7 +36,7 @@ public class ServicesController {
     }
 
     @GetMapping
-    private MessageResponse getAll(@RequestBody String token) {
+    private MessageResponse getAll(@RequestParam (value = "token") String token) {
         try {
             if (tokenRepository.findByToken(token) != null) {
                 ArrayList<Service> services = servicesRepository.findAllByUid(tokenRepository.findByToken(token).getUid());
