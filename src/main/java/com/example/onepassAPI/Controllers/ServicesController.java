@@ -60,14 +60,14 @@ public class ServicesController {
         } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
     }
 
-    @DeleteMapping("/{name}")
-    private MessageResponse deleteByName(
+    @DeleteMapping("/{id}")
+    private MessageResponse deleteById(
             @RequestParam String token,
-            @PathVariable("name") String name
+            @PathVariable("id") long id
     ) {
         try {
             if (tokenRepository.findByToken(token) != null) {
-                servicesRepository.delete(servicesRepository.findByNameAndUid(name, tokenRepository.findByToken(token).getUid()));
+                servicesRepository.delete(servicesRepository.findByIdAndUid(id, tokenRepository.findByToken(token).getUid()));
                 return new MessageResponse("ok", 200);
             } else return new MessageResponse("token not found", 404);
         } catch (Exception e) { return new MessageResponse(e.toString(), 400); }

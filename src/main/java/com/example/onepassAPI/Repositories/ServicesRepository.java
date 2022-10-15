@@ -13,6 +13,9 @@ public interface ServicesRepository extends JpaRepository<Service, Long> {
     @Query("select u from Service u where u.name = :name and u.uid = :uid")
     Service findByNameAndUid(@Param("name") String name, @Param("uid") String uid);
 
+    @Query("select u from Service u where u.id = :id and u.uid = :uid")
+    Service findByIdAndUid(@Param("id") long id, @Param("uid") String uid);
+
     Service findById(long id);
 
     ArrayList<Service> findAllByUid(String uid);
